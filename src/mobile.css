@@ -1,0 +1,54 @@
+/* mobile-app.css */
+@media (max-width: 768px) {
+    /* Container styles */
+    .latex-content {
+      font-size: 0.95em;
+    }
+  
+    .latex-content .katex {
+      font-size: 1em;
+    }
+  
+    .latex-content .katex-display {
+      padding: 0.75em;
+      margin: 1em 0;
+    }
+  
+    /* Custom scrollbar for mobile */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+  
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+    }
+  
+    /* Input adjustments */
+    input::placeholder {
+      font-size: 0.875rem;
+    }
+  
+    /* Message bubbles */
+    .message-bubble {
+      max-width: 90%;
+    }
+  
+    /* Workspace toggle animation */
+    .workspace-toggle {
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+  
+  /* Hide desktop version on mobile */
+  @media (max-width: 768px) {
+    .desktop-only {
+      display: none;
+    }
+  }
+  
+  /* Hide mobile version on desktop */
+  @media (min-width: 769px) {
+    .mobile-only {
+      display: none;
+    }
+  }

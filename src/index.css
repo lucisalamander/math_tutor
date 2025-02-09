@@ -1,0 +1,184 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@keyframes loading-dot {
+  0%,
+  100% {
+    transform: scale(0.3);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-loading-dot {
+  animation: loading-dot 1s ease-in-out infinite;
+}
+
+.latex-content {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.latex-content .katex {
+  font-size: 1.1em;
+}
+
+.latex-content .katex-display {
+  margin: 1.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1em;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+}
+
+.latex-content .katex-display > .katex {
+  white-space: nowrap;
+}
+
+.latex-content .math-inline {
+  color: #4f46e5;
+}
+
+.latex-content .math-display {
+  color: #1f2937;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .latex-content {
+    font-size: 0.95em;
+  }
+
+  .latex-content .katex {
+    font-size: 1em;
+  }
+
+  .latex-content .katex-display {
+    padding: 0.75em;
+    margin: 1em 0;
+  }
+
+  /* Workspace styles */
+  .mobile-workspace {
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin: 0.5rem;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Message bubble adjustments */
+  .message-bubble {
+    max-width: 90%;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+}
+
+.latex-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.cursor-col-resize {
+  user-select: none;
+}
+
+@layer components {
+  .chat-container {
+    @apply flex-1 flex flex-col;
+    height: calc(100vh - theme('spacing.14'));
+  }
+
+  /* .chat-messages {
+    @apply flex-1 overflow-y-auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  } */
+
+  .chat-input-container {
+    @apply sticky bottom-0 bg-white border-t p-3;
+    /* Prevent mobile browser chrome from affecting layout */
+    padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+  }
+
+  /* Desktop specific styles */
+  @screen md {
+    .chat-container {
+      max-width: 40%;
+    }
+  }
+
+  /* Mobile optimization */
+  @screen sm {
+    .mobile-safe-bottom {
+      padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+    }
+
+    .mobile-search-fixed {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      z-index: 50;
+      padding: 0.75rem;
+      padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+      border-top: 1px solid theme('colors.gray.200');
+    }
+
+    /* Prevent content from being hidden behind fixed search bar */
+    .mobile-content-padding {
+      padding-bottom: calc(3.5rem + env(safe-area-inset-bottom, 0.75rem));
+    }
+  }
+
+  /* LaTeX display improvements */
+  .latex-display {
+    @apply my-4 p-3 bg-gray-50 rounded-lg overflow-x-auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .latex-inline {
+    @apply mx-1 text-indigo-600;
+  }
+}
